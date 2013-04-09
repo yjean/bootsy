@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Bootsy by volmer</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Bootsy</h1>
+        <h2>A beautiful wysiwig editor with image uploads for Rails</h2>
+        <a href="https://github.com/volmer/bootsy" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>Bootsy</h1>
+
+<p><a href="http://badge.fury.io/rb/bootsy"><img src="https://badge.fury.io/rb/bootsy.png" alt="Gem Version"></a>
+<a href="http://travis-ci.org/volmer/bootsy"><img src="https://secure.travis-ci.org/volmer/bootsy.png?branch=master" alt="Build Status"></a>
+<a href="https://gemnasium.com/volmer/bootsy"><img src="https://gemnasium.com/volmer/bootsy.png" alt="Dependency Status"></a>
+<a href="https://codeclimate.com/github/volmer/bootsy"><img src="https://codeclimate.com/github/volmer/bootsy.png" alt="Code Climate"></a>
+<a href="https://coveralls.io/r/volmer/bootsy"><img src="https://coveralls.io/repos/volmer/bootsy/badge.png?branch=master" alt="Coverage Status"></a></p>
+
+<p><em>Bootsy</em> is a WYSIWYG solution for Rails based on <a href="https://github.com/jhollingworth/bootstrap-wysihtml5">Bootstrap-wysihtml5</a> which includes image uploads via <a href="https://github.com/jnicklas/carrierwave">CarrierWave</a>.</p>
+
+<h2>Requirements</h2>
+
+<ul>
+<li>Ruby &gt;= 1.9.3;</li>
+<li>ImageMagick or GraphicsMagick (for MiniMagick);</li>
+<li>Rails ~&gt; 3.2 (Rails 4 support is comming soon);</li>
+<li>
+<a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> properly added on your application.</li>
+</ul><h2>Installation</h2>
+
+<ol>
+<li>
+<p>Add Bootsy to your Gemfile:</p>
+
+<div class="highlight"><pre><span class="n">gem</span> <span class="s1">'bootsy'</span>
+</pre></div>
+</li>
+<li>
+<p>Run the bundle command to install it:</p>
+
+<div class="highlight"><pre><span class="go">bundle install</span>
+</pre></div>
+</li>
+<li>
+<p>Run the install generator:</p>
+
+<div class="highlight"><pre><span class="go">rails g bootsy:install</span>
+</pre></div>
+</li>
+<li>
+<p>Add and run migrations (if you're using ActiveRecord):</p>
+
+<div class="highlight"><pre><span class="go">rake bootsy:install:migrations</span>
+<span class="go">rake db:migrate</span>
+</pre></div>
+</li>
+</ol><h2>Usage</h2>
+
+<p>Just call the brand new method <code>bootsy_area</code> in your <code>FormBuilder</code> instances, the same way you'd call the basic <code>textarea</code> method. Example:</p>
+
+<div class="highlight"><pre><span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="vi">@post</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:title</span> <span class="cp">%&gt;</span><span class="x">&lt;br /&gt;</span>
+<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span><span class="x"></span>
+
+<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:content</span> <span class="cp">%&gt;</span><span class="x">&lt;br /&gt;</span>
+<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">bootsy_area</span> <span class="ss">:content</span> <span class="cp">%&gt;</span><span class="x"></span>
+
+<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span>
+</pre></div>
+
+<p>Bootsy will group the uploaded images as galleries and associate them to one of your models. For example, if you have a <code>Post</code> model and you want to use <code>bootsy_area</code> with it, then you should include the <code>Bootsy::Container</code> module:</p>
+
+<div class="highlight"><pre>  <span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+    <span class="kp">include</span> <span class="ss">Bootsy</span><span class="p">:</span><span class="ss">:Container</span>
+
+    <span class="n">attr_accessible</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">:title</span>
+  <span class="k">end</span>
+</pre></div>
+
+<h2>Editor options</h2>
+
+<p>It is possible to customize how the editor is displayed and its behavior by passing a hash <code>editor_options</code> to your <code>bootsy_area</code>.</p>
+
+<h3>Buttons</h3>
+
+<p>You can enable/disable the buttons available on the editor. For example, if you want to disable the link and color buttons:</p>
+
+<div class="highlight"><pre><span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">bootsy_area</span> <span class="ss">:my_attribute</span><span class="p">,</span> <span class="n">editor_options</span><span class="p">:</span> <span class="p">{</span><span class="ss">link</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">color</span><span class="p">:</span> <span class="kp">false</span><span class="p">}</span> <span class="cp">%&gt;</span><span class="x"></span>
+</pre></div>
+
+<p>Available options are: <code>:font_styles</code>, <code>:emphasis</code>, <code>:lists</code>, <code>:html</code>, <code>:link</code>, <code>:image</code> and <code>:color</code>.</p>
+
+<h3>Alert for usaved changes</h3>
+
+<p>By default, Bootsy alerts for unsaved changes if the user attempts to unload the window. You can disable this behaviour by doing:</p>
+
+<div class="highlight"><pre><span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">bootsy_area</span> <span class="ss">:my_attribute</span><span class="p">,</span> <span class="n">editor_options</span><span class="p">:</span> <span class="p">{</span><span class="n">alert_unsaved</span><span class="p">:</span> <span class="kp">false</span><span class="p">}</span> <span class="cp">%&gt;</span><span class="x"></span>
+</pre></div>
+
+<h2>Uploader</h2>
+
+<p>It's also possible to use Bootsy without the image upload feature. Just call <code>bootsy_area</code> in a form builder not associated to a <code>Bootsy::Container</code> model. This way users can insert images in their texts by providing an image url.</p>
+
+<h2>Configuration</h2>
+
+<p>You can set the default editor options, image sizes available (small, medium, large and/or its original), its dimensions and more. Take a look at the initalizer file, <code>/config/initializers/bootsy.rb</code>.</p>
+
+<h2>I18n</h2>
+
+<p>Bootsy defines some i18n keys. The english translation is automatically added to your <code>config/locales</code> directory as <code>bootsy.en.yml</code>. You can follow that template in order to translate Bootsy to your language. You can find some examples <a href="https://github.com/volmer/bootsy/tree/master/config/locales">here</a>. It is also necessary to add a translation for Bootstrap-wysihtml5, the javascript editor, in your assets pipeline. Instructions <a href="https://github.com/jhollingworth/bootstrap-wysihtml5#i18n">here</a>. If you are using the alert for unsaved changes, you have to define a translation for it as well. Just follow <a href="https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js">this example</a>.</p>
+
+<h2>Mongoid support</h2>
+
+<p>By default, Bootsy only supports ActiveRecord. In order to use Bootsy with Mongoid, please use <a href="https://github.com/volmer/bootsy-mongoid">Bootsy-Mongoid</a> instead.</p>
+
+<h2>Bootsy with SimpleForm</h2>
+
+<p>Do you want to use Bootsy alongside with <a href="https://github.com/plataformatec/simple_form">SimpleForm</a>? Take a look at <a href="https://github.com/volmer/bootsy-simple_form">Bootsy-SimpleForm</a>.</p>
+
+<h2>License</h2>
+
+<p>MIT License. Copyright 2013 Volmer Soares</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/volmer/bootsy/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/volmer/bootsy/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/volmer/bootsy"></a> is maintained by <a href="https://github.com/volmer">volmer</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>

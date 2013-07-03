@@ -28,7 +28,8 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h1>Bootsy</h1>
+          <h1>
+<a name="bootsy" class="anchor" href="#bootsy"><span class="octicon octicon-link"></span></a>Bootsy</h1>
 
 <p><a href="http://badge.fury.io/rb/bootsy"><img src="https://badge.fury.io/rb/bootsy.png" alt="Gem Version"></a>
 <a href="http://travis-ci.org/volmer/bootsy"><img src="https://secure.travis-ci.org/volmer/bootsy.png?branch=master" alt="Build Status"></a>
@@ -36,17 +37,19 @@
 <a href="https://codeclimate.com/github/volmer/bootsy"><img src="https://codeclimate.com/github/volmer/bootsy.png" alt="Code Climate"></a>
 <a href="https://coveralls.io/r/volmer/bootsy"><img src="https://coveralls.io/repos/volmer/bootsy/badge.png?branch=master" alt="Coverage Status"></a></p>
 
-<p><em>Bootsy</em> is a WYSIWYG solution for Rails based on <a href="https://github.com/jhollingworth/bootstrap-wysihtml5">Bootstrap-wysihtml5</a> which includes image uploads via <a href="https://github.com/jnicklas/carrierwave">CarrierWave</a>.</p>
+<p><em>Bootsy</em> is a WYSIWYG solution for Rails based on <a href="https://github.com/jhollingworth/bootstrap-wysihtml5">Bootstrap-wysihtml5</a> which includes image uploads via <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave</a>.</p>
 
-<h2>Requirements</h2>
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
 <ul>
-<li>Ruby &gt;= 1.9.3;</li>
+<li>Ruby <code>2.0</code> or <code>1.9.3</code>;</li>
 <li>ImageMagick or GraphicsMagick (for MiniMagick);</li>
-<li>Rails ~&gt; 3.2 (Rails 4 support is comming soon);</li>
+<li>Rails <code>4.0</code> (you can get a <em>temporary</em> support for Rails <code>3.2</code> on <a href="https://github.com/volmer/bootsy/tree/rails-3.2">this branch</a>);</li>
 <li>
 <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> properly added on your application.</li>
-</ul><h2>Installation</h2>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <ol>
 <li>
@@ -74,71 +77,90 @@
 <span class="go">rake db:migrate</span>
 </pre></div>
 </li>
-</ol><h2>Usage</h2>
+</ol><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Just call the brand new method <code>bootsy_area</code> in your <code>FormBuilder</code> instances, the same way you'd call the basic <code>textarea</code> method. Example:</p>
 
-<div class="highlight"><pre><span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="vi">@post</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x"></span>
-<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:title</span> <span class="cp">%&gt;</span><span class="x">&lt;br /&gt;</span>
-<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span><span class="x"></span>
+<div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="vi">@post</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:title</span> <span class="cp">%&gt;</span><span class="x">&lt;br /&gt;</span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span><span class="x"></span>
 
-<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:content</span> <span class="cp">%&gt;</span><span class="x">&lt;br /&gt;</span>
-<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">bootsy_area</span> <span class="ss">:content</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:content</span> <span class="cp">%&gt;</span><span class="x">&lt;br /&gt;</span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">bootsy_area</span> <span class="ss">:content</span> <span class="cp">%&gt;</span><span class="x"></span>
 
-<span class="x">    </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="cp">%&gt;</span><span class="x"></span>
-<span class="x">  </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span>
 </pre></div>
 
 <p>Bootsy will group the uploaded images as galleries and associate them to one of your models. For example, if you have a <code>Post</code> model and you want to use <code>bootsy_area</code> with it, then you should include the <code>Bootsy::Container</code> module:</p>
 
-<div class="highlight"><pre>  <span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-    <span class="kp">include</span> <span class="ss">Bootsy</span><span class="p">:</span><span class="ss">:Container</span>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+  <span class="kp">include</span> <span class="ss">Bootsy</span><span class="p">:</span><span class="ss">:Container</span>
 
-    <span class="n">attr_accessible</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">:title</span>
-  <span class="k">end</span>
+  <span class="n">attr_accessible</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">:title</span>
+<span class="k">end</span>
 </pre></div>
 
-<h2>Editor options</h2>
+<p>Don't forget to ensure the association of new instances of your model with Bootsy image galleries. For <code>strong_parameters</code>, you must allow the parameter <code>bootsy_image_gallery_id</code> in your controllers. Example:</p>
+
+<div class="highlight"><pre><span class="kp">private</span>
+<span class="c1"># Never trust parameters from the scary internet, only allow the white list through.</span>
+<span class="k">def</span> <span class="nf">post_params</span>
+  <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:post</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:title</span><span class="p">,</span> <span class="ss">:content</span><span class="p">,</span> <span class="ss">:bootsy_image_gallery_id</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+<h2>
+<a name="editor-options" class="anchor" href="#editor-options"><span class="octicon octicon-link"></span></a>Editor options</h2>
 
 <p>It is possible to customize how the editor is displayed and its behavior by passing a hash <code>editor_options</code> to your <code>bootsy_area</code>.</p>
 
-<h3>Buttons</h3>
+<h3>
+<a name="buttons" class="anchor" href="#buttons"><span class="octicon octicon-link"></span></a>Buttons</h3>
 
 <p>You can enable/disable the buttons available on the editor. For example, if you want to disable the link and color buttons:</p>
 
-<div class="highlight"><pre><span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">bootsy_area</span> <span class="ss">:my_attribute</span><span class="p">,</span> <span class="n">editor_options</span><span class="p">:</span> <span class="p">{</span><span class="ss">link</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">color</span><span class="p">:</span> <span class="kp">false</span><span class="p">}</span> <span class="cp">%&gt;</span><span class="x"></span>
+<div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">bootsy_area</span> <span class="ss">:my_attribute</span><span class="p">,</span> <span class="n">editor_options</span><span class="p">:</span> <span class="p">{</span><span class="ss">link</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">color</span><span class="p">:</span> <span class="kp">false</span><span class="p">}</span> <span class="cp">%&gt;</span><span class="x"></span>
 </pre></div>
 
 <p>Available options are: <code>:font_styles</code>, <code>:emphasis</code>, <code>:lists</code>, <code>:html</code>, <code>:link</code>, <code>:image</code> and <code>:color</code>.</p>
 
-<h3>Alert for usaved changes</h3>
+<h3>
+<a name="alert-for-usaved-changes" class="anchor" href="#alert-for-usaved-changes"><span class="octicon octicon-link"></span></a>Alert for usaved changes</h3>
 
 <p>By default, Bootsy alerts for unsaved changes if the user attempts to unload the window. You can disable this behaviour by doing:</p>
 
-<div class="highlight"><pre><span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">bootsy_area</span> <span class="ss">:my_attribute</span><span class="p">,</span> <span class="n">editor_options</span><span class="p">:</span> <span class="p">{</span><span class="n">alert_unsaved</span><span class="p">:</span> <span class="kp">false</span><span class="p">}</span> <span class="cp">%&gt;</span><span class="x"></span>
+<div class="highlight"><pre><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">bootsy_area</span> <span class="ss">:my_attribute</span><span class="p">,</span> <span class="n">editor_options</span><span class="p">:</span> <span class="p">{</span><span class="n">alert_unsaved</span><span class="p">:</span> <span class="kp">false</span><span class="p">}</span> <span class="cp">%&gt;</span><span class="x"></span>
 </pre></div>
 
-<h2>Uploader</h2>
+<h2>
+<a name="uploader" class="anchor" href="#uploader"><span class="octicon octicon-link"></span></a>Uploader</h2>
 
 <p>It's also possible to use Bootsy without the image upload feature. Just call <code>bootsy_area</code> in a form builder not associated to a <code>Bootsy::Container</code> model. This way users can insert images in their texts by providing an image url.</p>
 
-<h2>Configuration</h2>
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
 
 <p>You can set the default editor options, image sizes available (small, medium, large and/or its original), its dimensions and more. Take a look at the initalizer file, <code>/config/initializers/bootsy.rb</code>.</p>
 
-<h2>I18n</h2>
+<h2>
+<a name="i18n" class="anchor" href="#i18n"><span class="octicon octicon-link"></span></a>I18n</h2>
 
 <p>Bootsy defines some i18n keys. The english translation is automatically added to your <code>config/locales</code> directory as <code>bootsy.en.yml</code>. You can follow that template in order to translate Bootsy to your language. You can find some examples <a href="https://github.com/volmer/bootsy/tree/master/config/locales">here</a>. It is also necessary to add a translation for Bootstrap-wysihtml5, the javascript editor, in your assets pipeline. Instructions <a href="https://github.com/jhollingworth/bootstrap-wysihtml5#i18n">here</a>. If you are using the alert for unsaved changes, you have to define a translation for it as well. Just follow <a href="https://github.com/volmer/bootsy/tree/master/app/assets/bootsy/locales/bootsy.pt-BR.js">this example</a>.</p>
 
-<h2>Mongoid support</h2>
+<h2>
+<a name="mongoid-support" class="anchor" href="#mongoid-support"><span class="octicon octicon-link"></span></a>Mongoid support</h2>
 
 <p>By default, Bootsy only supports ActiveRecord. In order to use Bootsy with Mongoid, please use <a href="https://github.com/volmer/bootsy-mongoid">Bootsy-Mongoid</a> instead.</p>
 
-<h2>Bootsy with SimpleForm</h2>
+<h2>
+<a name="bootsy-with-simpleform" class="anchor" href="#bootsy-with-simpleform"><span class="octicon octicon-link"></span></a>Bootsy with SimpleForm</h2>
 
 <p>Do you want to use Bootsy alongside with <a href="https://github.com/plataformatec/simple_form">SimpleForm</a>? Take a look at <a href="https://github.com/volmer/bootsy-simple_form">Bootsy-SimpleForm</a>.</p>
 
-<h2>License</h2>
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>MIT License. Copyright 2013 Volmer Soares</p>
         </section>
@@ -155,7 +177,7 @@
 
           <p class="repo-owner"><a href="https://github.com/volmer/bootsy"></a> is maintained by <a href="https://github.com/volmer">volmer</a>.</p>
 
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
         </aside>
       </div>
     </div>

@@ -6,7 +6,7 @@
 [![Code Climate](https://codeclimate.com/github/volmer/bootsy.png)](https://codeclimate.com/github/volmer/bootsy)
 [![Coverage Status](https://coveralls.io/repos/volmer/bootsy/badge.png?branch=rails-3.2)](https://coveralls.io/r/volmer/bootsy?branch=rails-3.2)
 
-*Bootsy* is a WYSIWYG solution for Rails based on [Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) which includes image uploads via [CarrierWave](https://github.com/jnicklas/carrierwave).
+*Bootsy* is a WYSIWYG solution for Rails based on [Bootstrap-wysihtml5](https://github.com/jhollingworth/bootstrap-wysihtml5) which includes image uploads via [CarrierWave](https://github.com/carrierwaveuploader/carrierwave).
 
 *NOTICE:* This is a branch with *temporary* support for Rails `3.2`. We strongly recomend you to upgrade your project to Rails `4.0` and profit all goodies of our `master` branch.
 
@@ -15,7 +15,7 @@
 
 * Ruby `2.0` or `1.9.3`;
 * ImageMagick or GraphicsMagick (for MiniMagick);
-* Rails `3.2` (for Rails `4.0` please use the `master` branch);
+* Rails `3.2` (for Rails `4.0` please use the [`master` branch](https://github.com/volmer/bootsy/tree/master));
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/) properly added on your application.
 
 

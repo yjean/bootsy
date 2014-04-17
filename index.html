@@ -51,44 +51,39 @@
 <a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
 <ul>
-<li>Ruby <code>2.0</code> or <code>1.9.3</code>;</li>
+<li>Ruby <code>2</code> or <code>1.9.3</code>;</li>
 <li>ImageMagick or GraphicsMagick (for MiniMagick);</li>
-<li>Rails <code>4.0</code>;</li>
+<li>Rails <code>4</code>;</li>
 <li>
 <a href="http://getbootstrap.com/">Bootstrap <code>3</code></a> properly added to your application.</li>
 </ul><h2>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <ol>
-<li>
-<p>Add Bootsy to your Gemfile:</p>
-
-<div class="highlight highlight-ruby"><pre><span class="n">gem</span> <span class="s1">'bootsy'</span>
+<li>Add Bootsy to your Gemfile:</li>
+</ol><div class="highlight highlight-ruby"><pre><span class="n">gem</span> <span class="s1">'bootsy'</span>
 </pre></div>
-</li>
-<li>
-<p>Run the bundle command to install it:</p>
 
-<div class="highlight highlight-console"><pre><span class="go">bundle install</span>
+<ol>
+<li>Run the bundle command to install it:</li>
+</ol><div class="highlight highlight-console"><pre><span class="go">bundle install</span>
 </pre></div>
-</li>
-<li>
-<p>Run the install generator:</p>
 
-<div class="highlight highlight-console"><pre><span class="go">rails generate bootsy:install</span>
+<ol>
+<li>Run the install generator:</li>
+</ol><div class="highlight highlight-console"><pre><span class="go">rails generate bootsy:install</span>
 </pre></div>
 
 <p>It will include the javascripts and stylesheets in the assets pipeline,
-create the <code>bootsy.rb</code> initializer and add a copy of the english translations.</p>
-</li>
-<li>
-<p>Add and run migrations (if you're using ActiveRecord):</p>
+  create the <code>bootsy.rb</code> initializer and add a copy of the english translations.</p>
 
-<div class="highlight highlight-console"><pre><span class="go">rake bootsy:install:migrations</span>
+<ol>
+<li>Add and run migrations (if you're using ActiveRecord):</li>
+</ol><div class="highlight highlight-console"><pre><span class="go">rake bootsy:install:migrations</span>
 <span class="go">rake db:migrate</span>
 </pre></div>
-</li>
-</ol><h2>
+
+<h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Just call the brand new method <code>bootsy_area</code> in your <code>FormBuilder</code> instances, the

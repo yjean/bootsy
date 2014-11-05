@@ -240,6 +240,9 @@ Bootsy.Area.prototype.init = function() {
       this.options.customCommand = true;
       this.options.customCommandCallback = this.openImagesModal.bind(this);
       this.options.customTemplates = {
+        textAlignment: function(locale, options) {
+          return "<li><div class='btn-group'><a class='btn btn-default' data-wysihtml5-command='justifyLeft' title='Align left'><span class='glyphicon glyphicon-align-left'></span></a><a class='btn btn-default' data-wysihtml5-command='justifyCenter' title='Align center'><span class='glyphicon glyphicon-align-center'></span></a><a class='btn btn-default' data-wysihtml5-command='justifyRight' title='Align right'><span class='glyphicon glyphicon-align-right'></span></a></div></li>";
+        },
         customCommand: function(locale, options) {
           var size = (options && options.size) ? ' btn-'+options.size : '';
 

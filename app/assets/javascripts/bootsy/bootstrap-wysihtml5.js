@@ -414,6 +414,7 @@
         "link": true,
         "image": true,
         customCommand: false,
+        textAlignment: false,
         events: {},
         parserRules: {
             classes: {

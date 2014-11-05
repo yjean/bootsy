@@ -1,5 +1,9 @@
 # Bootsy Changelog
 
+## 2.0.12
+
+* Handle a specific new command (textAlignment)
+
 ## 2.0.11
 
 * Fix orange color (#94).
